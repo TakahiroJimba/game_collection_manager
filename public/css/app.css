@@ -2,11 +2,10 @@
 
 #registration_inner {
   display: block;
-  padding: 40px 70px 26px;
-  width: 600px;
-  border: 1px solid #dddfe2;
+  padding: 40px 20px 26px;
+  width: 350px;
   border-radius: 3px;
-  margin-top: 50px;
+  margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -14,7 +13,7 @@
 #user_registration_title_inner {
   font-size: 30px;
   text-align: center;
-  width: 500px;
+  width: 350px;
   margin-left: auto;
   margin-right: auto;
   border-bottom: 2px solid #498cbb;
