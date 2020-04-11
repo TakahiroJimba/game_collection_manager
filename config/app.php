@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'log' => env('APP_LOG', 'daily'), // logファイルを日付ごとに出力
+    'log_level' => env('APP_LOG_LEVEL', 'debug'), // logレベルdebug
+    'log_max_files' => '90',  // dailyログの場合のlogファイルの保存期間
 
     /*
     |--------------------------------------------------------------------------
