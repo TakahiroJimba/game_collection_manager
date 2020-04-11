@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// ユーザ登録
+Route::get ('user/registration',                     'User\RegistrationController@index');
+
+
+Route::post('user/ajax/check_mail_address',          'User\Ajax\CheckMailAdressController@check');          // メールアドレスの重複チェック
+Route::post('user/ajax/check_name',                  'User\Ajax\CheckNameController@check');                // ニックネームの重複チェック

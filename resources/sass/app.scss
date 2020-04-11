@@ -1,1 +1,211 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// // ログイン
+// @import 'login';
+
+// 会員登録
+@import 'user/_registration';
+
+// // 会員情報変更
+// @import 'user';
 //
+// // パスワードリセット
+// @import 'password_reset';
+//
+// // 商品登録
+// @import 'product_registration';
+//
+// // 販売商品一覧
+// @import 'product';
+//
+// // 商品決済
+// @import 'product_payment';
+//
+// // ダウンロードリンク
+// @import 'download_link';
+//
+// // 商品登録
+// @import 'admin_inquiry';
+
+// フッター
+@import 'footer';
+
+// @import 'stripe';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+// inputフォームのバリデーションエラー時
+.validation_err {
+    background-color: #ffd4e8 !important;
+    border-color: red !important;
+}
+
+body {
+    font-family: 'Source Sans Pro', Helvetica , Arial, '游ゴシック体', 'YuGothic', 'メイリオ', 'Meiryo', sans-serif;
+    color: #666;
+}
+
+#body_contents {
+  margin-left: 30px;    /* 外側の余白 */
+  margin-right: 30px;
+  min-height: calc(100vh - 180px);
+}
+
+ul {
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+// ボタン系
+.mybtn-blue {
+    color: #498cbb;
+    background-color: white;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+.mybtn-red {
+    color: #c51f1a;
+    background-color: white;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+.mybtn-green {
+    color: #28dd73;
+    background-color: white;
+    border-color: #28dd73;
+    padding-left: 20px;
+    padding-right: 20px;
+    &:hover {
+        color: #fff;
+        background-color: #28dd73;
+        border-color: #28dd73;
+    }
+}
+
+._text-align-center
+{
+    text-align: center;
+}
+
+#back_link_inner
+{
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    //border-bottom: 2px solid $color-header;
+}
+
+
+._bold {
+    font-weight: bold;
+}
+
+
+// マージン系
+._margin-top-10px
+{
+    margin-top: 10px;
+}
+._margin-top-20px
+{
+    margin-top: 20px;
+}
+
+._margin-left-20px
+{
+    margin-left: 20px;
+}
+._margin-bottom-10px
+{
+    margin-bottom: 10px;
+}
+._margin-bottom-20px
+{
+    margin-bottom: 20px;
+}
+._margin-bottom-30px
+{
+    margin-bottom: 30px;
+}
+._margin-bottom-40px
+{
+    margin-bottom: 40px;
+}
+._margin-bottom-50px
+{
+    margin-bottom: 50px;
+}
+
+// width系
+._width80px
+{
+    width: 80px;
+}
+._width100px
+{
+    width: 100px;
+}
+._width300px
+{
+    width: 300px;
+}
+._width80per
+{
+    width: 80%;
+}
+._width100per
+{
+    width: 100%;
+}
+
+._require {
+    background-color: red;
+    padding: 5px;
+    padding-top: 8px;
+    color: white;
+    font-weight: bold;
+    margin-left:  10px;
+    margin-right: 10px;
+}
+
+.alert-danger {
+    color: #f44640;
+    background-color: #f8fafc;
+    border-color: #f7c6c5;
+}
+
+.alert-success {
+    color: #3bbd72;
+    background-color: #f8fafc;
+    border-color: #42ec8c;
+}
+
+input[type="text"],
+input[type="password"] {
+    height: 48px;
+    padding: 10px 16px 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background: #fff;
+    line-height: 1.5;
+    font-size: 16px;
+}
+
+textarea {
+    padding: 10px 16px 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background: #fff;
+    line-height: 1.5;
+    font-size: 16px;
+}
+
+hr {
+    margin-bottom: 80px;
+}

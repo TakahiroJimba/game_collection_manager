@@ -52,4 +52,28 @@ $app->singleton(
 |
 */
 
+/*
+|--------------------------------------------------------------------------
+| 環境によって読み込む.envファイル切り替え
+|--------------------------------------------------------------------------
+*/
+
+switch ($_SERVER['SERVER_NAME']) {
+    case '127.0.0.1':
+        $app->loadEnvironmentFrom('.env.dev');
+        break;
+    case 'wordpress-shopsite.herokuapp.com':        // test環境に書き換える
+        $app->loadEnvironmentFrom('.env.test');
+        break;
+    case 'production.co.jp':                        // TODO: 本番環境に書き換える
+        $app->loadEnvironmentFrom('.env.prod');
+        break;
+    default:
+        $app->loadEnvironmentFrom('.env.dev');
+        break;
+}
+
+// 定数ファイルを読み込む
+require_once app_path() . '/config/const.php';
+
 return $app;
