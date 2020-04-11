@@ -30,8 +30,9 @@ class CheckMailAdressController extends Controller
 
         // --- 重複チェック ---
         // ユーザ情報をDBから取得
-        $user = DB::table('users')->where('mail_address', $mail_address)->first();
-        if (isset($user))
+        $user      = DB::table('users')->where('mail_address', $mail_address)->first();
+        $temp_user = DB::table('temp_users')->where('mail_address', $mail_address)->first();
+        if (isset($user) || isset($temp_user))
         {
             // 登録済みの場合
             return $this->getNgResponse();

@@ -37,8 +37,9 @@ class CheckNameController extends Controller
         }
 
         // ユーザ情報をDBから取得
-        $user = DB::table('users')->where('name', $name)->first();
-        if (isset($user))
+        $user      = DB::table('users')->where('name', $name)->first();
+        $temp_user = DB::table('temp_users')->where('name', $name)->first();
+        if (isset($user) || isset($temp_user))
         {
             // 登録済みの場合
             return $this->getNgResponse();

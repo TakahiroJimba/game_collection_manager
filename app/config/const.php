@@ -13,4 +13,6 @@
     define('USER_REGISTRATION_PASS_PHRASE_LENGTH',  4);
     define('USER_REGISTRATION_AUTH_EXPIRATION',     1);
 
+    // 入力フォームのエラーclass名
+    define('VALIDATION_ERR_CLASS', "validation_err");
 ?>

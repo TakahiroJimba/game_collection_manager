@@ -17,7 +17,7 @@
         <div id="registration_inner">
             @include('parts.show_err_msg_array')
 
-            <form action="/registration/confirm" accept-charset="UTF-8" method="post">
+            <form action="/user/registration" accept-charset="UTF-8" method="post">
                 {{ csrf_field() }}
                 <div class="_margin-bottom-10px"><span class="_bold">メールアドレス</span><span class="_require">必須</span></div>
                 <div class="_margin-bottom-40px">
