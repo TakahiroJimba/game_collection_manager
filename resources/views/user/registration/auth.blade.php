@@ -22,11 +22,11 @@
 
             @include('parts.show_err_msg_array')
 
-            <form action="/user/auth" accept-charset="UTF-8" method="post">
+            <form action="/user/registration/auth" accept-charset="UTF-8" method="post">
                 {{ csrf_field() }}
                 <div class="_margin-bottom-10px"><span class="_bold">認証コード</span></div>
                 <div class="_margin-bottom-40px">
-                    <input placeholder="XXXX" class="_width100px" type="text" name="auth_code" value="" />
+                    <input placeholder="XXXX" class="_width100px" type="text" name="auth_code" value="{{$auth_code ?? ''}}" />
                 </div>
 
                 <div class="">

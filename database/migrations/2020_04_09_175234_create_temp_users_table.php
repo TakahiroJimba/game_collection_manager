@@ -18,6 +18,7 @@ class CreateTempUsersTable extends Migration
             $table->string('mail_address')->unique()->index();
             $table->string('name')->unique();
             $table->string('password');
+            $table->string('pass_phrase');
             $table->timestamps();
             $table->softDeletes();      // deleted_at
         });

@@ -11,7 +11,7 @@
     define('USER_PASSWORD_MIN_LENGTH',              8);
     define('USER_PASSWORD_MAX_LENGTH',              20);
     define('USER_REGISTRATION_PASS_PHRASE_LENGTH',  4);
-    define('USER_REGISTRATION_AUTH_EXPIRATION',     1);
+    define('USER_REGISTRATION_AUTH_EXPIRATION',     30);    // 分
 
     // 入力フォームのエラーclass名
     define('VALIDATION_ERR_CLASS', "validation_err");

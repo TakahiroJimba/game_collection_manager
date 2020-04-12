@@ -41,10 +41,6 @@ class RegistrationController extends Controller
         $data['validation'] = $this->validate_user_registration_params($params, true);
         if (isset($data['validation']['err_msg_array']) && count($data['validation']['err_msg_array']) != 0)
         {
-            $err_msg = "不正な操作を検出しました。もう一度やり直してください。";
-            $data['validation']['err_msg_array'] = array($err_msg);
-            log::warning($err_msg);
-
             return view('user.registration.index', $data);
         }
 
@@ -60,29 +56,18 @@ class RegistrationController extends Controller
             'mail_address'  => $params["mail_address"],
             'name'          => $params["name"],
             'password'      => Hash::make($params['password']),
+            'pass_phrase'   => $pass_phrase,
             'created_at'    => $now,
             'updated_at'    => $now,
         ];
 
-        DB::beginTransaction();
         try
         {
             $temp_user_id = DB::table("temp_users")->insertGetId($temp_user);
             log::info('temp_usersレコードを登録しました。id: ' . $temp_user_id);
-
-            $auth_code_data = [
-                'user_id'     => $temp_user_id,
-                'pass_phrase' => $pass_phrase,
-                'created_at'  => $now,
-                'updated_at'  => $now,
-            ];
-            $auth_code_id = DB::table("auth_code")->insertGetId($auth_code_data);
-            log::info('auth_codeレコードを登録しました。id: ' . $auth_code_id);
-            DB::commit();
         }
         catch (\Exception $e)
         {
-            DB::rollback();
             $err_msg = "登録処理に失敗しました。管理者へお問い合わせください。";
             $data['validation']['err_msg_array'] = array($err_msg);
             log::error($err_msg);
@@ -97,6 +82,61 @@ class RegistrationController extends Controller
         Mail::to($params["mail_address"])->send(new RegisterShipped($sendData));
 
         return view('user.registration.auth', $temp_user);
+    }
+
+    // 認証処理
+    public function auth(Request $request)
+    {
+        log::debug('User/Registration/auth');
+
+        // パラメータ取得
+        $data['mail_address'] = $request->input('mail_address');
+        $data['auth_code']    = $request->input('auth_code');
+
+        if (empty($data['auth_code']))
+        {
+            $data['validation']['err_msg_array'][] = '認証コードを入力してください。';
+            return view('user.registration.auth', $data);
+        }
+
+        // メールアドレスで仮登録ユーザを検索
+        $temp_user = $this->getTempUserByMailAddress($data['mail_address']);
+
+        // 仮登録が未済 または有効期限切れの場合は、有効期限切れページを表示
+        if (empty($temp_user))
+        {
+            log::info('仮登録有効期限切れ mail_address: ' . $data['mail_address']);
+            return view('user.registration.expired');
+        }
+
+        // コード認証
+        if ($temp_user->pass_phrase != $data['auth_code'])
+        {
+            $data['validation']['err_msg_array'][] = '認証コードが違います。';
+            return view('user.registration.auth', $data);
+        }
+
+        // --- 認証成功 ---
+        try {
+            $this->deleteTempUserById($temp_user->id);
+
+            // usersテーブルにデータを登録
+            $now = Carbon::now();
+            $user['name']         = $temp_user->name;
+            $user['mail_address'] = $temp_user->mail_address;
+            $user['password']     = $temp_user->password;
+            $user['created_at']   = $now;
+            $user['updated_at']   = $now;
+
+            DB::table('users')->insert($user);
+            log::info('usersレコードを登録しました。' . implode(",", $user));
+        } catch (\Exception $e) {
+            $data['validation']['err_msg_array'] = array('ユーザ登録処理に失敗しました。管理者へお問い合わせください。');
+            log::error("本登録処理に失敗しました。");
+            log::error($e);
+            return view('user.registration.auth', $data);
+        }
+        return view('user.registration.complete');
     }
 
     private function get_init_array()
@@ -196,131 +236,22 @@ class RegistrationController extends Controller
         return $validation;
     }
 
-    // // SMS認証コード入力画面表示
-    // public function sms_input(Request $request, $token)
-    // {
-    //     log::debug('UserRegist/sms_input');
-    //
-    //     // tokenで仮登録ユーザを検索
-    //     $temp_user = $this->getTempUserByToken($token);
-    //
-    //     // 仮登録が未済 または有効期限切れの場合は、有効期限切れページを表示
-    //     if (empty($temp_user))
-    //     {
-    //         log::info('仮登録有効期限切れ token: ' . $token);
-    //         return view('user_registration.expired');
-    //     }
-    //
-    //     $data['token'] = $token;
-    //     $data['phone'] = $temp_user->phone;
-    //
-    //     // 認証トークンを生成する
-    //     $sms_token = rand(1000, 9999);
-    //
-    //     $now = Carbon::now();
-    //
-    //     $insert_data = [
-    //         'phone'       => $data['phone'],
-    //         'token'       => $sms_token,
-    //         'send_status' => NOT_SEND,
-    //         'created_at'  => $now,
-    //         'updated_at'  => $now,
-    //     ];
-    //
-    //     // SMS認証データを登録する
-    //     DB::table('sms_auth')->insert($insert_data);
-    //
-    //     return view('user_registration.sms_input', $data);
-    // }
-    //
-    // // SMS認証処理
-    // public function sms_auth(Request $request)
-    // {
-    //     log::debug('UserRegist/sms_auth');
-    //
-    //     // パラメータ取得
-    //     $data['token']    = $request->input('token');
-    //     $data['sms_code'] = $request->input('sms_code');
-    //
-    //     // tokenで仮登録ユーザを検索
-    //     $temp_user = $this->getTempUserByToken($data['token']);
-    //
-    //     // 仮登録が未済 または有効期限切れの場合は、有効期限切れページを表示
-    //     if (empty($temp_user))
-    //     {
-    //         log::info('仮登録有効期限切れ token: ' . $data['token']);
-    //         return view('user_registration.expired');
-    //     }
-    //
-    //     $data['phone'] = $temp_user->phone;
-    //
-    //     if (empty($data['sms_code']))
-    //     {
-    //         $data['validation']['err_msg_array'][] = '認証コードを入力してください。';
-    //         return view('user_registration.sms_input', $data);
-    //     }
-    //
-    //     // SMSコード認証
-    //     $sms_auth = DB::table('sms_auth')
-    //         ->where('token', $data['sms_code'])
-    //         ->where('phone', $temp_user->phone)
-    //         ->first();
-    //
-    //     // エラーハンドリング
-    //     if (empty($sms_auth) || count($sms_auth) == 0)
-    //     {
-    //         $data['validation']['err_msg_array'][] = '認証コードが違います。';
-    //         return view('user_registration.sms_input', $data);
-    //     }
-    //
-    //     $now = Carbon::now();
-    //
-    //     // --- 認証成功 ---
-    //     DB::beginTransaction();
-    //     try {
-    //         // sms_authテーブルからレコードを削除
-    //         DB::table('sms_auth')->where('id', $sms_auth->id)->delete();
-    //         log::info('sms_authレコードを削除しました。id: ' . $sms_auth->id);
-    //
-    //         // temp_usersテーブルからレコードを削除
-    //         DB::table('temp_users')->where('id', $temp_user->id)->delete();
-    //         log::info('temp_usersレコードを削除しました。id: ' . $temp_user->id);
-    //
-    //         // usersテーブルにデータを登録
-    //         $user['last_name']  = $temp_user->last_name;
-    //         $user['first_name'] = $temp_user->first_name;
-    //         $user['nickname']   = $temp_user->nickname;
-    //         $user['mail']       = $temp_user->mail;
-    //         $user['phone']      = $temp_user->phone;
-    //         $user['password']   = $temp_user->password;
-    //         $user['lang']       = $temp_user->lang;
-    //         $user['created_at'] = $now;
-    //         $user['updated_at'] = $now;
-    //
-    //         $new_user_id = DB::table('users')->insertGetId($user);
-    //
-    //         $user['id'] = $new_user_id;
-    //         log::info('usersレコードを登録しました。' . implode(",", $user));
-    //
-    //         DB::commit();
-    //     } catch (\Exception $e) {
-    //         DB::rollback();
-    //         $data['validation']['err_msg_array'] = array('本登録処理に失敗しました。管理者へお問い合わせください。');
-    //         log::error("本登録処理に失敗しました。rollbackしたため、データメンテは不要です。");
-    //         log::error($e);
-    //         return view('user_registration.sms_input', $data);
-    //     }
-    //
-    //     return view('user_registration.complete');
-    // }
-    //
-    // // tokenで仮登録ユーザを検索
-    // private function getTempUserByToken($token)
-    // {
-    //     return DB::table('temp_users')
-    //         ->where('token', $token)
-    //         ->where('created_at', '>=', Carbon::now()->addDay(-1))  // 仮登録の期限は24時間
-    //         ->whereNull('deleted_at')
-    //         ->first();
-    // }
+    // メールアドレスで仮登録ユーザを検索
+    private function getTempUserByMailAddress($mail_address)
+    {
+        return DB::table('temp_users')
+            ->where('mail_address', $mail_address)
+            //->where('pass_phrase', $pass_phrase)
+            ->where('created_at', '>=', Carbon::now()->subMinutes(USER_REGISTRATION_AUTH_EXPIRATION))  // 仮登録の期限は30分間
+            ->whereNull('deleted_at')
+            ->first();
+    }
+
+    // 仮登録ユーザ削除
+    private function deleteTempUserById($id)
+    {
+        // temp_usersテーブルからレコードを削除
+        DB::table('temp_users')->where('id', $id)->delete();
+        log::info('temp_usersレコードを削除しました。id: ' . $id);
+    }
 }
