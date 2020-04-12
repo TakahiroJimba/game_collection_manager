@@ -1,0 +1,64 @@
+// Place all the styles related to the session controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.login_form {
+    width: 100%;
+}
+
+#login_inner {
+    background-color: #ffffff;
+    display: block;
+    margin: auto;
+    padding: 22px 70px 26px;
+    max-width: 396px;
+    border: 1px solid #dddfe2;
+    border-radius: 3px;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#login_outer {
+//   background-color: #e9ebee;
+//    padding: 80px 0;
+}
+
+p.name {
+    font-size: 150%;
+}
+
+.edit_form_width {
+    width: 300px;
+}
+
+a.btn_width {
+    width: 200px;
+}
+
+div.login_title {
+    font-size: 1.8em;
+    padding-bottom: 15px;
+}
+
+//ボタンの色
+ .btn_back_color_orange {
+    background: $color-orange;
+    border-color: $color-orange;
+    color: white;
+        &:hover {
+            background: $color-orange;
+            color: white;
+        }
+}
+
+//ボタンの色
+ a.btn_back_color_orange {
+    background: $color-orange;
+    border-color: $color-orange;
+    color: white;
+        &:hover, &:active {
+            background: $color-orange;
+            color: white;
+        }
+}

@@ -1,5 +1,62 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
 
+.login_form {
+  width: 100%;
+}
+
+#login_inner {
+  background-color: #ffffff;
+  display: block;
+  margin: auto;
+  padding: 22px 70px 26px;
+  max-width: 396px;
+  border: 1px solid #dddfe2;
+  border-radius: 3px;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+p.name {
+  font-size: 150%;
+}
+
+.edit_form_width {
+  width: 300px;
+}
+
+a.btn_width {
+  width: 200px;
+}
+
+div.login_title {
+  font-size: 1.8em;
+  padding-bottom: 15px;
+}
+
+.btn_back_color_orange {
+  background: #ff9900;
+  border-color: #ff9900;
+  color: white;
+}
+
+.btn_back_color_orange:hover {
+  background: #ff9900;
+  color: white;
+}
+
+a.btn_back_color_orange {
+  background: #ff9900;
+  border-color: #ff9900;
+  color: white;
+}
+
+a.btn_back_color_orange:hover,
+a.btn_back_color_orange:active {
+  background: #ff9900;
+  color: white;
+}
+
 #registration_inner {
   display: block;
   padding: 40px 20px 26px;

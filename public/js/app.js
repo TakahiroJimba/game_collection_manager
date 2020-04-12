@@ -19283,6 +19283,9 @@ module.exports = function(module) {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+__webpack_require__(/*! ./parts/login/complete */ "./resources/js/parts/login/complete.js"); // 独自のjsを追加
+
+
 __webpack_require__(/*! ./parts/user/registration */ "./resources/js/parts/user/registration.js"); // 独自のjsを追加
 
 
@@ -19337,6 +19340,17 @@ $(function () {
     $(this).closest('form').submit(); //フォームを送信する
   });
 });
+
+/***/ }),
+
+/***/ "./resources/js/parts/login/complete.js":
+/*!**********************************************!*\
+  !*** ./resources/js/parts/login/complete.js ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$(function () {});
 
 /***/ }),
 

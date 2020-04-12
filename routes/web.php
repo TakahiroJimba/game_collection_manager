@@ -13,6 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// ログイン画面
+Route::get ('login/{app_id}',                        'Login\LoginController@index');
+Route::post('login',                                 'Login\LoginController@login_auth');
+
+// パスワードリセット
+Route::get ('pass/reset',                            'User\ResetPasswordController@index');
+Route::post('pass/reset',                            'User\ResetPasswordController@send_mail');
+Route::get ('pass/reset/input/{token}',              'User\ResetPasswordController@input');
+Route::post('pass/reset/input',                      'User\ResetPasswordController@reset');
+
+// ログアウト
+Route::get ('logout',                                'Login\LogoutController@index');
+
 // ユーザ登録
 Route::get ('user/registration',                     'User\RegistrationController@index');
 Route::post('user/registration',                     'User\RegistrationController@regist');
