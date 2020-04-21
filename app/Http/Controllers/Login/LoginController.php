@@ -105,6 +105,12 @@ class LoginController extends Controller
         return view('login.complete', $data);
     }
 
+    // localStorageの値を取得する
+    public function get_local_storage()
+    {
+        return view('login.get_local_storage');
+    }
+
     private function validate_login_params($mail_address, $password)
     {
         $validation = array();

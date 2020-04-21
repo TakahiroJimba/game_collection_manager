@@ -13,6 +13,10 @@
     define('USER_REGISTRATION_PASS_PHRASE_LENGTH',  4);
     define('USER_REGISTRATION_AUTH_EXPIRATION',     30);    // 分
 
+    // ログイン
+    define('USER_LOCK_MINUTES',                     10);    // 分
+    define('USER_LOGIN_EXPIRATION_DATE',            10);    // day
+
     // 入力フォームのエラーclass名
     define('VALIDATION_ERR_CLASS', "validation_err");
 ?>

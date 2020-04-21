@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('name')->unique();
             $table->string('password');
             $table->timestamp('last_playing_time')->nullable();
-            $table->timestamp('lock_at')->nullable();
+            $table->timestamp('lock_at')->default('2020-01-01 00:00:00');
             $table->integer('lock_count')->default(0);
             $table->integer('login_failure_num')->default(0);
             $table->boolean('ban')->default(false);

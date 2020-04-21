@@ -14,8 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 // ログイン画面
-Route::get ('login/{app_id}',                        'Login\LoginController@index');
-Route::post('login',                                 'Login\LoginController@login_auth');
+// Route::get ('login/{app_id}',                        'Login\LoginController@index');
+// Route::post('login',                                 'Login\LoginController@login_auth');
+// Route::get ('login/test/get_local_storage',          'Login\LoginController@get_local_storage');
 
 // パスワードリセット
 Route::get ('pass/reset',                            'User\ResetPasswordController@index');
@@ -24,7 +25,7 @@ Route::get ('pass/reset/input/{token}',              'User\ResetPasswordControll
 Route::post('pass/reset/input',                      'User\ResetPasswordController@reset');
 
 // ログアウト
-Route::get ('logout',                                'Login\LogoutController@index');
+// Route::get ('logout',                                'Login\LogoutController@index');
 
 // ユーザ登録
 Route::get ('user/registration',                     'User\RegistrationController@index');

@@ -19350,18 +19350,20 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-$(function () {
-  var login_info = $('#login_info');
-
-  if (login_info.val() != undefined) {
-    var user_id = login_info.children('[name=user_id]').val();
-    var session_id = login_info.children('[name=session_id]').val();
-    var app_id = login_info.children('[name=app_id]').val();
-    localStorage.setItem('user_id', user_id);
-    localStorage.setItem('session_id', session_id);
-    window.location.href = 'reversiapp://top_menu.html';
-  }
-});
+// $(function()
+// {
+//     let login_info = $('#login_info');
+//     if(login_info.val() != undefined){
+//         let user_id    = login_info.children('[name=user_id]').val();
+//         let session_id = login_info.children('[name=session_id]').val();
+//         let app_url    = login_info.children('[name=app_url]').val();
+//
+//         localStorage.setItem('user_id', user_id);
+//         localStorage.setItem('session_id', session_id);
+//         //window.location.href = app_url + user_id + "/" + session_id;
+//         window.location.href = app_url;
+//     }
+// });
 
 /***/ }),
 
