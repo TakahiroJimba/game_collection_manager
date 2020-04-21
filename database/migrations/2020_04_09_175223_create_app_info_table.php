@@ -17,6 +17,7 @@ class CreateAppInfoTable extends Migration
             $table->increments('id')->index();
             $table->string('name');
             $table->string('version');
+            $table->string('custom_url');
             $table->timestamps();
             // $table->softDeletes();      // deleted_at
         });

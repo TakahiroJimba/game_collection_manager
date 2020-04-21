@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;    // ディレクトリ階層が別な場合に必要
+use App\Model\AppInfo;
 
 // 「\」を入れないで使うには下記の一文を入れておくこと
 use Illuminate\Support\Facades\Log;
@@ -35,13 +36,20 @@ class LoginController extends Controller
         $data['app_id']       = $app_id;
 
         // ログインパラメータのバリデーション
-        // TODO: $app_idのバリデーション
         $data['validation'] = $this->validate_login_params($mail_address, $password);
-
         if (isset($data['validation']['err_msg_array']) && count($data['validation']['err_msg_array']) != 0)
         {
             return view('login.index', $data);
         }
+
+        // app_idのバリデーション
+        $app_info = AppInfo::getAppInfoById($app_id);
+        if (!isset($app_info))
+        {
+            $data['validation']['err_msg_array'] = array('エラーが発生しました。管理者へお問い合わせください。');
+            return view('login.index', $data);
+        }
+        $data['app_url'] = $app_info->custom_url;
 
         // ユーザ情報をDBから取得
         // TODO: 削除されていない、banされていない、ロックされていないことを考慮する
