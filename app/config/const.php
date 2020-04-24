@@ -12,10 +12,15 @@
     define('USER_PASSWORD_MAX_LENGTH',              20);
     define('USER_REGISTRATION_PASS_PHRASE_LENGTH',  4);
     define('USER_REGISTRATION_AUTH_EXPIRATION',     30);    // 分
+    define('USER_MAIL_ADDRESS_REGEXP',              "/^[a-zA-Z0-9_.+-]+[@][a-zA-Z0-9.-]+$/");
+    define('USER_PASSWORD_REGEXP',              "/^[a-zA-Z0-9]{".USER_PASSWORD_MIN_LENGTH.",".USER_PASSWORD_MAX_LENGTH."}+$/");
 
     // ログイン
     define('USER_LOCK_MINUTES',                     10);    // 分
     define('USER_LOGIN_EXPIRATION_DATE',            10);    // day
+
+    // パスワードリセット
+    define('PASSWORD_RESET_EXPIRATION',             60);    // 分
 
     // 入力フォームのエラーclass名
     define('VALIDATION_ERR_CLASS', "validation_err");

@@ -12,29 +12,12 @@
 
 // // 会員情報変更
 // @import 'user';
-//
-// // パスワードリセット
-// @import 'password_reset';
-//
-// // 商品登録
-// @import 'product_registration';
-//
-// // 販売商品一覧
-// @import 'product';
-//
-// // 商品決済
-// @import 'product_payment';
-//
-// // ダウンロードリンク
-// @import 'download_link';
-//
-// // 商品登録
-// @import 'admin_inquiry';
+
+// パスワードリセット
+@import 'user/_reset_password';
 
 // フッター
 @import 'footer';
-
-// @import 'stripe';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';

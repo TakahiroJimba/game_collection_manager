@@ -18,12 +18,6 @@ use Illuminate\Support\Facades\Route;
 // Route::post('login',                                 'Login\LoginController@login_auth');
 // Route::get ('login/test/get_local_storage',          'Login\LoginController@get_local_storage');
 
-// パスワードリセット
-Route::get ('pass/reset',                            'User\ResetPasswordController@index');
-Route::post('pass/reset',                            'User\ResetPasswordController@send_mail');
-Route::get ('pass/reset/input/{token}',              'User\ResetPasswordController@input');
-Route::post('pass/reset/input',                      'User\ResetPasswordController@reset');
-
 // ログアウト
 // Route::get ('logout',                                'Login\LogoutController@index');
 
@@ -35,3 +29,9 @@ Route::post('user/registration/auth',                'User\RegistrationControll
 // 入力チェックAjax
 Route::post('user/ajax/check_mail_address',          'User\Ajax\CheckMailAdressController@check');          // メールアドレスの重複チェック
 Route::post('user/ajax/check_name',                  'User\Ajax\CheckNameController@check');                // ニックネームの重複チェック
+
+// パスワードリセット
+Route::get ('user/pw/reset',                         'User\ResetPasswordController@index');
+Route::post('user/pw/reset',                         'User\ResetPasswordController@send_mail');
+Route::get ('user/pw/reset/input/{user_id}/{token}', 'User\ResetPasswordController@input');
+Route::post('user/pw/reset/input',                   'User\ResetPasswordController@reset');

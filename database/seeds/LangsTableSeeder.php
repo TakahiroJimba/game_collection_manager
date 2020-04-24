@@ -23,6 +23,6 @@ class LangsTableSeeder extends Seeder
             [ 'name' => "日本語", ],
             [ 'name' => "English", ],
         ];
-    DB::table($TABLE_NAME)->insert($data);
+        DB::table($TABLE_NAME)->insert($data);
     }
 }

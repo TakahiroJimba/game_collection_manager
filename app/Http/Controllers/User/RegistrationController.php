@@ -196,7 +196,7 @@ class RegistrationController extends Controller
             $validation['err_msg_array'][] = 'メールアドレスを入力してください。';
             $validation['mail_address'] = VALIDATION_ERR_CLASS;
         }
-        elseif (!preg_match("/^[a-zA-Z0-9_.+-]+[@][a-zA-Z0-9.-]+$/", $params["mail_address"]))
+        elseif (!preg_match(USER_MAIL_ADDRESS_REGEXP, $params["mail_address"]))
         {
             $validation['err_msg_array'][] = 'メールアドレスに登録できない文字が含まれている、または不正なメールアドレスです。';
             $validation['mail_address'] = VALIDATION_ERR_CLASS;
@@ -220,7 +220,7 @@ class RegistrationController extends Controller
             $validation['err_msg_array'][] = 'パスワードを入力してください。';
             $validation['password'] = VALIDATION_ERR_CLASS;
         }
-        elseif (!preg_match("/^[a-zA-Z0-9]{".USER_PASSWORD_MIN_LENGTH.",".USER_PASSWORD_MAX_LENGTH."}+$/", $params["password"]))
+        elseif (!preg_match(USER_PASSWORD_REGEXP, $params["password"]))
         {
             $validation['err_msg_array'][] = 'パスワードは半角英数字' . USER_PASSWORD_MIN_LENGTH . '文字〜' . USER_PASSWORD_MAX_LENGTH . '文字で入力してください。';
             $validation['password'] = VALIDATION_ERR_CLASS;

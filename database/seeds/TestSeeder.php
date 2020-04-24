@@ -14,5 +14,8 @@ class TestSeeder extends Seeder
         // マスタ系
         $this->call(AppInfoTableSeeder::class);
         $this->call(LangsTableSeeder::class);
+
+        // --- テスト時に必要なデータを登録する ---
+        $this->call(UsersTableSeeder::class);
     }
 }
