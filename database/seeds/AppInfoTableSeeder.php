@@ -12,6 +12,7 @@ class AppInfoTableSeeder extends Seeder
      */
     public function run()
     {
+        require_once app_path() . '/config/const.php';
         // テーブル名
         $TABLE_NAME = 'app_info';
 
@@ -24,11 +25,28 @@ class AppInfoTableSeeder extends Seeder
 
         $data = [
             [
-              'name'       => "シンプルリバーシ",
-              'version'    => '0.0.0',
-              'custom_url' => 'reversiapp://',
-              'created_at' => $now,
-              'updated_at' => $now,
+                'id'         => GAME_COLLECTION_MGR_APP_ID,
+                'name'       => "ゲームコレクションマネージャ",
+                'version'    => '0.0.0',
+                'custom_url' => '',
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            [
+                'id'         => GAME_COLLECTION_APP_ID,
+                'name'       => "ゲームコレクション",
+                'version'    => '0.0.0',
+                'custom_url' => 'gamecollectionapp://',
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            [
+                'id'         => REVERSI_APP_ID,
+                'name'       => "シンプルリバーシ",
+                'version'    => '0.0.0',
+                'custom_url' => 'reversiapp://',
+                'created_at' => $now,
+                'updated_at' => $now,
             ],
         ];
         DB::table($TABLE_NAME)->insert($data);

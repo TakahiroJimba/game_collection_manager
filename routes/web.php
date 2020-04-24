@@ -14,12 +14,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 // ログイン画面
-// Route::get ('login/{app_id}',                        'Login\LoginController@index');
-// Route::post('login',                                 'Login\LoginController@login_auth');
-// Route::get ('login/test/get_local_storage',          'Login\LoginController@get_local_storage');
+Route::get ('login',                                 'Login\LoginController@index');
+Route::post('login',                                 'Login\LoginController@login_auth');
+//Route::get ('login/test/get_local_storage',          'Login\LoginController@get_local_storage');
 
 // ログアウト
-// Route::get ('logout',                                'Login\LogoutController@index');
+Route::get ('logout',                                'Login\LogoutController@index');
 
 // ユーザ登録
 Route::get ('user/registration',                     'User\RegistrationController@index');

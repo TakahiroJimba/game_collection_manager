@@ -78,24 +78,12 @@ class LoginController extends Controller
         }
 
         // --- 認証成功 ---
-        // 乱数を取得
-        $access_token = str_random(32);
-        $now = Carbon::now();
-
+        $access_token = LoginUser::createAccessToken();
         DB::beginTransaction();
         try
         {
-            $login_user = [
-                'user_id'           => $user->id,
-                'session_id'        => $access_token,
-                'expiration_date'   => Carbon::now()->addDay(USER_LOGIN_EXPIRATION_DATE),  // 10日後
-                'app_info_id'       => $app_info->id,
-                'created_at'        => $now,
-                'updated_at'        => $now,
-            ];
-
             // DBにセッションIDを登録する
-            DB::table('login_users')->insert($login_user);
+            LoginUser::insertLoginUser($user->id, $access_token, $app_info->id);
 
             // // 最終ログイン日時を更新する
             // DB::table('users')->where('id', $user->id)
@@ -112,7 +100,7 @@ class LoginController extends Controller
             log::error("ログイン処理に失敗しました。rollbackしたため、データメンテは不要です。");
             return json_encode($data);
         }
-        log::debug('ログイン成功 user_id: ' . $user->id);
+        log::debug('ログイン成功 user_id: ' . $user->id . ', app_info_id:' . $app_info->id);
         $data['is_login']   = '1';
         $data['session_id'] = $access_token;
         return json_encode($data);

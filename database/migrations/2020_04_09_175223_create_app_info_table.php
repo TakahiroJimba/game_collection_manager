@@ -14,7 +14,7 @@ class CreateAppInfoTable extends Migration
     public function up()
     {
         Schema::create('app_info', function (Blueprint $table) {
-            $table->increments('id')->index();
+            $table->integer('id')->unsigned()->unique()->index();
             $table->string('name');
             $table->string('version');
             $table->string('custom_url');
