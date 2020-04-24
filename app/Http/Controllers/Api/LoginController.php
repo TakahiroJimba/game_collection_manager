@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;    // ディレクトリ階層が別な場�
 
 // 「\」を入れないで使うには下記の一文を入れておくこと
 use Illuminate\Support\Facades\Log;
+use App\Model\AppInfo;
 use App\Model\LoginUser;
 use App\Model\User;
 
@@ -23,6 +24,7 @@ class LoginController extends Controller
         // パラメータを取得
         $mail_address = $_POST["mail_address"];
         $password     = $_POST["password"];
+        $app_info_id  = $_POST["app_info_id"];
 
         // ログイン失敗時は0
         $data['is_login'] = '0';
@@ -34,14 +36,14 @@ class LoginController extends Controller
             return json_encode($data);
         }
 
-        // // app_idのバリデーション
-        // $app_info = AppInfo::getAppInfoById($app_id);
-        // if (!isset($app_info))
-        // {
-        //     $data['validation']['err_msg_array'] = array('エラーが発生しました。管理者へお問い合わせください。');
-        //     return view('login.index', $data);
-        // }
-        // $data['app_url'] = $app_info->custom_url;
+        // app_idのバリデーション
+        $app_info = AppInfo::getAppInfoById($app_info_id);
+        if (!isset($app_info))
+        {
+            log::error('不正なアプリIDです。app_info_id: ' . $app_info_id);
+            $data['err_msg'] = 'エラーが発生しました。管理者へお問い合わせください。';
+            return json_encode($data);
+        }
 
         // ユーザ情報をDBから取得
         $user = User::getUserByMailAddress($mail_address);
@@ -87,6 +89,7 @@ class LoginController extends Controller
                 'user_id'           => $user->id,
                 'session_id'        => $access_token,
                 'expiration_date'   => Carbon::now()->addDay(USER_LOGIN_EXPIRATION_DATE),  // 10日後
+                'app_info_id'       => $app_info->id,
                 'created_at'        => $now,
                 'updated_at'        => $now,
             ];
@@ -119,12 +122,12 @@ class LoginController extends Controller
     public function is_login()
     {
         log::debug('Api/Login/is_login');
-        $user_id    = $_POST["user_id"];
-        $session_id = $_POST["session_id"];
+        $user_id      = $_POST["user_id"];
+        $session_id   = $_POST["session_id"];
+        $app_info_id  = $_POST["app_info_id"];
 
         // ログイン認証
-        $login_user = LoginUser::getLoginUser($user_id, $session_id);
-
+        $login_user = LoginUser::getLoginUser($user_id, $session_id, $app_info_id);
         if (!isset($login_user))
         {
             log::warning('このユーザはログインしていません。user_id: ' . $user_id);

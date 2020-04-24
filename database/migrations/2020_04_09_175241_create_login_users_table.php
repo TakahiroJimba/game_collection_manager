@@ -17,8 +17,10 @@ class CreateLoginUsersTable extends Migration
             $table->integer('user_id')->unsigned()->index();
             $table->string('session_id');
             $table->timestamp('expiration_date');
+            $table->integer('app_info_id')->unsigned()->index();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade'); //外部キー参照
+            $table->foreign('app_info_id')->references('id')->on('app_info')->onDelete('cascade'); //外部キー参照
         });
     }
 
