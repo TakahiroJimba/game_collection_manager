@@ -35,3 +35,10 @@ Route::get ('user/pw/reset',                         'User\ResetPasswordControll
 Route::post('user/pw/reset',                         'User\ResetPasswordController@send_mail');
 Route::get ('user/pw/reset/input/{user_id}/{token}', 'User\ResetPasswordController@input');
 Route::post('user/pw/reset/input',                   'User\ResetPasswordController@reset');
+
+// トップメニュー
+Route::get ('menu',                                  'MenuController@index')->middleware('is_user_login');
+
+// ユーザ情報変更
+Route::get ('user/update',                           'User\UpdateController@index')->middleware('is_user_login');
+Route::post('user/update',                           'User\UpdateController@update')->middleware('is_user_login');

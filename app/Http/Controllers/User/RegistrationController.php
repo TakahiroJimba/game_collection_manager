@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Mail\RegisterShipped;
 use Illuminate\Support\Facades\App;
 use Mail;
+use App\Model\User;
 
 // 「\」を入れないで使うには下記の一文を入れておくこと
 use Illuminate\Support\Facades\Log;
@@ -45,10 +46,7 @@ class RegistrationController extends Controller
         }
 
         // 4桁の認証コードを生成
-        $pass_phrase = "";
-        for ($i = 0; $i < USER_REGISTRATION_PASS_PHRASE_LENGTH; $i++) {
-            $pass_phrase .= rand(0, 9);
-        }
+        $pass_phrase = User::createPassPhrase();
 
         // 仮登録処理
         $now = Carbon::now();

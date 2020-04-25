@@ -12,6 +12,7 @@
 <div id="menu_outer">
     <div id="menu_inner">
         <div class="menu_title">メニュー</div>
+        <a href='/user/update'>ユーザ情報変更</a>
     </div>
 </div>
 @endsection

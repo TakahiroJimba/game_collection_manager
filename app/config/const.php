@@ -19,6 +19,7 @@
     define('USER_REGISTRATION_AUTH_EXPIRATION',     30);    // 分
     define('USER_MAIL_ADDRESS_REGEXP',              "/^[a-zA-Z0-9_.+-]+[@][a-zA-Z0-9.-]+$/");
     define('USER_PASSWORD_REGEXP',                  "/^[a-zA-Z0-9]{".USER_PASSWORD_MIN_LENGTH.",".USER_PASSWORD_MAX_LENGTH."}+$/");
+    define('USER_MAIL_ADDRESS_AUTH_EXPIRATION',     30);    // 分
 
     // ログイン
     define('USER_LOCK_MINUTES',                     10);    // 分
