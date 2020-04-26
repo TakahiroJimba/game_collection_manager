@@ -10,8 +10,11 @@
 // 会員登録
 @import 'user/_registration';
 
-// 会員情報変更
+// ユーザ情報変更
 @import 'user/_update';
+
+// ユーザアカウント削除
+@import 'user/_delete';
 
 // パスワードリセット
 @import 'user/_reset_password';

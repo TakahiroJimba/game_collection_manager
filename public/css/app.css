@@ -98,6 +98,27 @@ a.btn_back_color_orange:active {
   padding-bottom: 10px;
 }
 
+#user_delete_inner {
+  display: block;
+  padding: 40px 70px 26px;
+  width: 600px;
+  border: 1px solid #dddfe2;
+  border-radius: 3px;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#user_delete_title_inner {
+  font-size: 30px;
+  text-align: center;
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  border-bottom: 2px solid #498cbb;
+  padding-bottom: 10px;
+}
+
 #reset_password_inner {
   display: block;
   padding: 40px 70px 26px;

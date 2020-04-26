@@ -78,6 +78,18 @@ class User extends Model
                     ]);
     }
 
+    // ユーザ情報を論理削除する
+    static public function deleteUser($user_id)
+    {
+        $now = Carbon::now();
+        DB::table('users')
+            ->where('id', $user_id)
+            ->update([
+                        'deleted_at' => $now,
+                        'updated_at' => $now,
+                    ]);
+    }
+
     // 4桁の認証コードを生成
     static public function createPassPhrase()
     {

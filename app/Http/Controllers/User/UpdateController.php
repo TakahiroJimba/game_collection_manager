@@ -28,7 +28,9 @@ class UpdateController extends Controller
 
         // 空の配列を用意
         $data['validation'] = $this->get_init_basic_array();
-        $login_user         = LoginUser::getLoginUser(session()->get('user_id'), session()->get('session_id'), GAME_COLLECTION_MGR_APP_ID);
+        $login_user         = LoginUser::getLoginUser(session()->get('user_id'),
+                                                      session()->get('session_id'),
+                                                      GAME_COLLECTION_MGR_APP_ID);
         $data['user']       = User::getUserById($login_user->user_id);
 
         return view($this->VIEW_INDEX, $data);
