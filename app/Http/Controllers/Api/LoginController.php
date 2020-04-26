@@ -102,6 +102,7 @@ class LoginController extends Controller
         }
         log::debug('ログイン成功 user_id: ' . $user->id . ', app_info_id:' . $app_info->id);
         $data['is_login']   = '1';
+        $data['user_id'] = $user->id;        
         $data['session_id'] = $access_token;
         return json_encode($data);
     }

@@ -19,3 +19,6 @@ Route::post('login_auth',   'Api\LoginController@auth');
 
 // ログインチェック
 Route::post('is_login',     'Api\LoginController@is_login');
+
+// ログアウト
+Route::post('logout',       'Api\LogoutController@logout');
