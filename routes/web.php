@@ -19,7 +19,7 @@ Route::post('login',                                 'Login\LoginController@logi
 //Route::get ('login/test/get_local_storage',          'Login\LoginController@get_local_storage');
 
 // ログアウト
-Route::get ('logout',                                'Login\LogoutController@index');
+Route::get ('logout',                                'Login\LogoutController@index')->middleware('is_user_login');;
 
 // ユーザ登録
 Route::get ('user/registration',                     'User\RegistrationController@index');
@@ -42,3 +42,7 @@ Route::get ('menu',                                  'MenuController@index')->mi
 // ユーザ情報変更
 Route::get ('user/update',                           'User\UpdateController@index')->middleware('is_user_login');
 Route::post('user/update',                           'User\UpdateController@update')->middleware('is_user_login');
+
+// ユーザアカウント削除
+Route::get ('user/delete',                           'User\DeleteController@index')->middleware('is_user_login');
+Route::post('user/delete',                           'User\DeleteController@delete')->middleware('is_user_login');

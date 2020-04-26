@@ -33,6 +33,15 @@ class LoginUser extends Model
         DB::table('login_users')->insert($login_user);
     }
 
+    static public function deleteLoginUser($user_id, $session_id, $app_info_id)
+    {
+        DB::table('login_users')
+            ->where('user_id', $user_id)
+            ->where('session_id', $session_id)
+            ->where('app_info_id', $app_info_id)
+            ->delete();
+    }
+
     // session_idに使用するランダムな文字列を生成
     static public function createAccessToken()
     {
