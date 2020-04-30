@@ -1,0 +1,37 @@
+#header {
+    background-color: $color-header;
+    color: white;
+    padding: 10px;
+    height: 100px;
+    a {
+        color: white;
+        text-decoration: none;
+        &:hover {
+            color: white;
+            text-decoration: none;
+            opacity: .8;
+        }
+    }
+}
+
+#logo {
+    margin-right: 10px;
+    font-size: 1.7em;
+    color: white;
+    letter-spacing: -1px;
+    line-height: 1;
+}
+#header_logo {
+    margin-top: 20px;
+    padding-left: 20px;
+}
+
+#header_menu {
+    text-align: right;
+    padding-right: 20px;
+}
+
+.menu_padding {
+    padding-left: 10px;
+    padding-right: 10px;
+}

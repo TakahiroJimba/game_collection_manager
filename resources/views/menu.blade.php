@@ -10,11 +10,13 @@
 
 @section('content')
 <div id="menu_outer">
-    <div id="menu_inner">
-        <div class="menu_title">メニュー</div>
-        <a href='/user/update'>ユーザ情報変更</a><br>
-        <a href='/user/delete'>アカウント削除</a><br>
-        <a href='/logout'>ログアウト</a><br>
+    <div id="menu_inner" class="_margin-top-30px">
+        <h1>メニュー</h1>
+        <div id="main_menu">
+            <a href='/user/update'>ユーザ情報変更</a><br>
+            <a href='/user/delete'>アカウント削除</a><br>
+            <a href='/logout'>ログアウト</a><br>
+        </div>
     </div>
 </div>
 @endsection

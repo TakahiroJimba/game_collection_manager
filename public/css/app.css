@@ -57,6 +57,10 @@ a.btn_back_color_orange:active {
   color: white;
 }
 
+#main_menu {
+  padding-left: 20px;
+}
+
 #registration_inner {
   display: block;
   padding: 40px 20px 26px;
@@ -138,6 +142,47 @@ a.btn_back_color_orange:active {
   margin-right: auto;
   border-bottom: 2px solid #498cbb;
   padding-bottom: 10px;
+}
+
+#header {
+  background-color: #498cbb;
+  color: white;
+  padding: 10px;
+  height: 100px;
+}
+
+#header a {
+  color: white;
+  text-decoration: none;
+}
+
+#header a:hover {
+  color: white;
+  text-decoration: none;
+  opacity: 0.8;
+}
+
+#logo {
+  margin-right: 10px;
+  font-size: 1.7em;
+  color: white;
+  letter-spacing: -1px;
+  line-height: 1;
+}
+
+#header_logo {
+  margin-top: 20px;
+  padding-left: 20px;
+}
+
+#header_menu {
+  text-align: right;
+  padding-right: 20px;
+}
+
+.menu_padding {
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 footer {
@@ -11049,7 +11094,7 @@ body {
   margin-left: 30px;
   /* 外側の余白 */
   margin-right: 30px;
-  min-height: calc(100vh - 180px);
+  min-height: calc(100vh - 165px);
 }
 
 ul {
@@ -11106,6 +11151,10 @@ ul {
 
 ._margin-top-20px {
   margin-top: 20px;
+}
+
+._margin-top-30px {
+  margin-top: 30px;
 }
 
 ._margin-left-20px {
@@ -11196,5 +11245,23 @@ textarea {
 
 hr {
   margin-bottom: 80px;
+}
+
+h1 {
+  text-align: left;
+  font-size: 2em;
+  border-left: 8px solid #498cbb;
+  padding-left: 10px;
+  border-bottom: 1px solid #498cbb;
+  padding-bottom: 3px;
+  margin-bottom: 20px;
+}
+
+h2 {
+  border-bottom: 1px solid #498cbb;
+  padding-bottom: 3px;
+  margin-bottom: 20px;
+  margin-top: 40px;
+  font-size: 1.8em;
 }
 

@@ -1,23 +1,36 @@
 @section('header')
-    <header class="header">
-        <div><a href='/top'>{{APP_NAME}}</a></div>
+    <header id="header" class="header">
+        <div id="header_logo">
+            <!-- システム名 -->
+            <a id="logo" href='/menu'>{{APP_NAME}}</a>
 
-        <!-- <a href='/product/list'>販売商品一覧</a><br>
+            <!-- ユーザ名表示 -->
+            <span id="header_user_name">
+                @if (session('user_id'))
+                    {{session('name')}}さん
+                @endif
+            </span>
+        </div>
 
-        @if (session('session_id'))
-            <a href='/product/registration/list'>Myテーマ一覧</a><br>
-            <a href='/user/update'>会員情報変更</a><br>
-            <a href='/board_menu'>掲示板メニュー</a><br>
-            <a href='/logout'>ログアウト</a><br>
-        @else
-            <a href='/login'>ログイン</a><br>
-        @endif
+        <div id="header_menu">
+            @if (session('session_id'))
+                <!-- ログイン時メニュー -->
+                <span class="menu_padding">
+                    <a href='/logout'>ユーザ情報変更</a>
+                </span>
+                <span class="menu_padding">
+                    <a href='/logout'>ログアウト</a>
+                </span>
+            @else
+                <!-- ログイン前メニュー -->
+                <span class="menu_padding">
+                    <a href='/login'>ログイン</a>
+                </span>
+                <span class="menu_padding">
+                    <a href='/user/registration'>アカウント登録</a>
+                </span>
+            @endif
 
-        <a href='/admin_inquiry'>管理者問い合わせ</a><br>
-
-        @if (session('admin_session_id'))
-            <div>管理者でログイン中です。</div>
-            <a href='/admin/logout'>管理者からログアウト</a>
-        @endif -->
+        </div>
     </header>
 @endsection
