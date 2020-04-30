@@ -102,6 +102,7 @@ class LoginController extends Controller
         // セッションへデータを保存する
         session()->put('session_id', $access_token);
         session()->put('user_id',    $user->id);
+        session()->put('name',       $user->name);
 
         return view('menu');
     }

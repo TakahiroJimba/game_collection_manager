@@ -29,7 +29,7 @@
             </div>
         </form>
         <div class="_text-align-center">
-            <a href="/pass/reset">パスワードを忘れた場合</a>
+            <a href="/user/pw/reset">パスワードを忘れた場合</a>
         </div>
     </div>
 </div>

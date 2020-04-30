@@ -28,6 +28,7 @@ class LogoutController extends Controller
         // セッションのデータを破棄する
         session()->put('session_id', null);
         session()->put('user_id',    null);
+        session()->put('name',       null);
 
         log::debug(APP_NAME . 'から正常にログアウトしました。user_id: ' . $user_id);
         return view('login.index');

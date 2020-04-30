@@ -21,7 +21,7 @@
                 <div class="">
                     アカウントを削除します。<br>
                     削除の取り消しはできませんのでご注意ください。
-                    <input type="submit" value="アカウント削除" class="btn btn-danger mybtn-red" />
+                    <input type="submit" value="アカウント削除" class="btn btn-danger mybtn-red _margin-top-30px" />
                 </div>
             </form>
         </div>

@@ -16,7 +16,7 @@
             @if (session('session_id'))
                 <!-- ログイン時メニュー -->
                 <span class="menu_padding">
-                    <a href='/logout'>ユーザ情報変更</a>
+                    <a href='/user/update'>ユーザ情報変更</a>
                 </span>
                 <span class="menu_padding">
                     <a href='/logout'>ログアウト</a>
