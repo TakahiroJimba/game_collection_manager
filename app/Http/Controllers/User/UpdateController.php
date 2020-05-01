@@ -77,6 +77,7 @@ class UpdateController extends Controller
             }
 
             log::debug('アカウント情報の更新に成功しました。');
+            session()->put('name', $params['name']);
             $data['validation']['msg'] = "アカウント情報を更新しました。";
         }
         elseif ($request->input('password_commit') != null)
