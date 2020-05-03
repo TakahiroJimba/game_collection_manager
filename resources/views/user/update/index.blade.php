@@ -40,7 +40,7 @@
                 <hr>
                 <div class="_margin-bottom-10px"><span class="_bold">メールアドレス</span><span class="_require">必須</span></div>
                 <div class="_margin-bottom-40px">
-                    <input placeholder="新しいメールアドレス" class="<?php echo $validation['mail_address']; ?> _width300px" type="text" name="mail_address" value="{{ isset($params['mail_address']) ? $params['mail_address'] : $user->mail_address }}" />
+                    <input placeholder="新しいメールアドレス" class="<?php echo $validation['mail_address']; ?> _width250px" type="text" name="mail_address" value="{{ isset($params['mail_address']) ? $params['mail_address'] : $user->mail_address }}" />
                     <div class="">
                         <input type="submit" name="mail_auth_send_commit" value="認証コード送信" class="btn mybtn-green _margin-top-10px" data-disable-with="メールアドレス更新" />
                         <input type='hidden' name="mail_auth_send_commit" value="mail_auth_send_commit" >
@@ -55,7 +55,7 @@
                     <input placeholder="XXXX" class="<?php echo $validation['mail_auth_code']; ?> _width100px" type="text" name="mail_auth_code" />
                 </div>
 
-                <div class="">
+                <div class="_margin-top-10px">
                     <input type="submit" name="mail_auth_commit" value="メールアドレス更新" class="btn btn-primary mybtn-blue" data-disable-with="メールアドレス更新" />
                     <input type='hidden' name="mail_auth_commit" value="mail_auth_commit" >
                 </div>
