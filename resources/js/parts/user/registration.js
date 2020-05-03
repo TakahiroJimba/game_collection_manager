@@ -1,6 +1,6 @@
 $(function()
 {
-    $('[name=mail_address]').on('blur',function() {
+    $('[name=mail_address]').on('change',function() {
         let mail_address = $(this).val();
 
         $.ajax({
@@ -36,7 +36,7 @@ $(function()
         });
     });
 
-    $('[name=name]').on('blur',function() {
+    $('[name=name]').on('change',function() {
         let name = $(this).val();
         let old_name = $('#old_name').val();
 

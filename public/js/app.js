@@ -19375,7 +19375,7 @@ $(function () {
 /***/ (function(module, exports) {
 
 $(function () {
-  $('[name=mail_address]').on('blur', function () {
+  $('[name=mail_address]').on('change', function () {
     var mail_address = $(this).val();
     $.ajax({
       headers: {
@@ -19411,7 +19411,7 @@ $(function () {
       console.log("not connnect");
     });
   });
-  $('[name=name]').on('blur', function () {
+  $('[name=name]').on('change', function () {
     var name = $(this).val();
     var old_name = $('#old_name').val();
     $.ajax({
