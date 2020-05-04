@@ -46,3 +46,6 @@ Route::post('user/update',                           'User\UpdateController@upda
 // ユーザアカウント削除
 Route::get ('user/delete',                           'User\DeleteController@index')->middleware('is_user_login');
 Route::post('user/delete',                           'User\DeleteController@delete')->middleware('is_user_login');
+
+// アプリ情報
+Route::get ('app/{app_info_id}/privacy_policy',     'ApiInfoController@showPrivacyPolicy');
